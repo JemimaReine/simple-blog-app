@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/prism.css' %}">
+<style>
+    /* Styles pour la mise en page */
+    .post {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .post h2 {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .post h4,
+    .post h5 {
+        color: #777;
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    .post p {
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+
+    .btn-secondary {
+        background-color: #04AA6D;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+        background-color: #038c5a;
+    }
+
+    /* Styles pour les commentaires */
+    .comment {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        margin-top: 10px;
+        background-color: #f5f5f5;
+    }
+
+    .comment p {
+        margin: 0;
+        padding: 0;
+    }
+
+    .comment .author {
+        font-weight: bold;
+        margin-top: 5px;
+    }
+
+    .comment hr {
+        margin-top: 10px;
+        margin-bottom: 5px;
+        border: none;
+        border-top: 1px solid #ddd;
+    }
+</style>
+<div class="post">
+    <h2>{{ post.title }}</h2>
+    <h4>By: {{ post.user.username }}</h4>
+    <h5>{{ post.created_at }}</h5>
+    <div>{{ post.body|safe }}</div>
+    <img src="{{ post.image.url }}" alt="Article Image" class="img-fluid mt-3" style="width: 200px; height: 200px;">
+
+    <!-- Formulaire pour commenter -->
+    <form action="{% url 'add_comment' post.id %}" method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit" class="btn btn-primary">Ajouter un commentaire</button>
+    </form>
+
+    <!-- Afficher les commentaires -->
+    {% for comment in comments %}
+    <div class="comment">
+        <p>{{ comment.content }}</p>
+        <p class="author">Par: {{ comment.user }}</p>
+        <hr>
+    </div>
+    {% endfor %}
+
+    <a href="{% url 'index' %}" class="btn btn-secondary mt-3">Retour</a>
+</div>
+{% endblock %}

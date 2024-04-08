@@ -1,0 +1,57 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    width: 50vw;
+    margin: auto;
+    color: #333;
+}
+
+.post{
+    padding: 5px;
+    border: 1px dashed black;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.post:hover{
+    border: 2px solid;
+}
+
+.post>a{
+    color: #333;
+}
+
+/* Style les champs de texte, les sélecteurs et les zones de texte */
+.container input[type=text],
+.container select,
+.container textarea {
+  width: 100%; /* Largeur complète */
+  padding: 12px; /* Un peu de marge */
+  border: 1px solid #ccc; /* Bordure grise */
+  border-radius: 4px; /* Bords arrondis */
+  box-sizing: border-box; /* Assurez-vous que le padding et la largeur restent en place */
+  margin-top: 6px; /* Ajoute une marge en haut */
+  margin-bottom: 16px; /* Marge en bas */
+  resize: vertical; /* Permet à l'utilisateur de redimensionner verticalement la zone de texte (pas horizontalement) */
+}
+
+/* Style le bouton de soumission avec une couleur de fond spécifique, etc. */
+.container input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Lorsque vous passez la souris sur le bouton de soumission, ajoutez une couleur verte plus sombre */
+.container input[type=submit]:hover {
+  background-color: #36da3e;
+}
+
+/* Ajoute une couleur de fond et un peu de marge autour du formulaire */
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}

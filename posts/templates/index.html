@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="row">
+    {% for post in posts reversed %}
+    <div class="col-md-6">
+        <div class="card mb-3">
+            <div class="card-body">
+                <img src="{{ post.image.url }}" alt="Article Image" class="img-fluid mt-3"
+                    style="width: 200px; height: 200px;">
+                <h2 class="card-title">{{ post.title }}</h2>
+                <h4 class="card-subtitle mb-2 text-muted">By: {{ post.user.username }}</h4>
+                <h5 class="card-subtitle mb-2 text-muted">{{ post.created_at }}</h5>
+                <p class="card-text">{{ post.body|truncatewords:5|safe }}</p>
+                <a href="{% url 'post' post.id %}" class="btn btn-primary">Read More</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

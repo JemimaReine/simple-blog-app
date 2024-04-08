@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<!-- Contact form -->
+<div style="margin: 80px;">
+    <h1>Contact</h1>
+    <p>
+        Please write your name, email address, and a message below if you have any questions.
+        One of our staff members will be happy to contact you directly and answer your questions as soon as possible.
+    </p>
+    <div class="container">
+        <form method="post" action="{% url 'contact' %}">
+            {% csrf_token %}
+    
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="first_name" placeholder="Your name..">
+    
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="last_name" placeholder="Your last name..">
+    
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Your email..">
+    
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Write something.." style="height:200px"></textarea>
+    
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+</div>
+{% endblock %}
